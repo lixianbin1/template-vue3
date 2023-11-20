@@ -1,7 +1,3 @@
-<script setup>
-import HelloWorld from './components/HelloWorld.vue'
-</script>
-
 <template>
   <div>
     <a href="https://vitejs.dev" target="_blank">
@@ -11,8 +7,24 @@ import HelloWorld from './components/HelloWorld.vue'
       <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
     </a>
   </div>
+  <span @click="addNum">{{counter}} </span>
   <HelloWorld msg="Vite + Vue" />
 </template>
+
+<script setup>
+import HelloWorld from './components/HelloWorld.vue';
+import { ref,reactive } from 'vue';
+import { storeToRefs } from 'pinia';
+import { useStore } from '@/stores';
+const Store = useStore()
+const {counter} = storeToRefs(Store)
+
+const addNum=()=>{
+  Store.addNum()
+  console.log(counter)
+  console.log(Store.counter)
+}
+</script>
 
 <style scoped>
 .logo {
