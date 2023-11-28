@@ -1,0 +1,47 @@
+/*重置样式*/
+*, :before, :after {
+  box-sizing: border-box;
+}
+.el-menu{
+  border-right: 0!important;
+}
+/*element-plus*/
+.el-header{
+  position: fixed;
+  z-index: 10;
+  height: 50px;
+  width: 100%;
+  padding: 0;
+}
+.el-aside{
+  position: fixed;
+  top: 50px;
+  height: 100%;
+  background: #545c64;
+}
+.navbar{
+  position: relative;
+  border-bottom: 1px solid #ccc;
+  height: 50px;
+  padding: 0 12px 0 24px;
+  background-image: radial-gradient(transparent 1px,rgb(255, 255, 255) 1px);
+  background-size: 4px 4px;
+  backdrop-filter: saturate(50%) blur(4px);
+  top: 0;
+}
+.main{
+  padding-left:200px;
+  padding-top:50px;
+}
+.el-main{
+  min-height: calc(100vh - 110px);
+}
+
+/*字体*/
+@font-face
+{
+    font-family: 'Banquise';
+    src: url('@/assets/fonts/Banquise-Regular.woff');
+    font-weight: normal;  
+    font-style: normal;  
+}

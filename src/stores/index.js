@@ -9,9 +9,7 @@ export const useStore = defineStore('main',{
     },
     actions:{
         addNum(){
-            
             this.counter++
-            console.log(this.counter)
         }
     }
 })

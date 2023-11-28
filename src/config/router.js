@@ -1,24 +1,25 @@
 import { createRouter,createWebHashHistory } from "vue-router";
 
+import Index from '@/page/Index.vue'
 import Home from '@/page/Home.vue'
-import Word from '@/page/Word.vue'
-import About from '@/page/About.vue'
+import Button from '@/page/Button.vue'
 import Nofined from '@/page/Nofined.vue'
 
 const routes = [
-    { path: '/', component: Home },
-    { path: '/about', component: About,
-        children:[
-        {path:'word',component:Word},
-        ]
-    },
-    { path:'/404', component: Nofined},
-    { path:'/:catchAll(.*)',redirect:'/404'}
+  {
+    path: '/', component: Index,
+    children:[
+      {path:'/',component:Home},
+      {path:'/Buttom',component:Button},
+      { path:'/404', component: Nofined},
+      { path:'/:catchAll(.*)',redirect:'/404'}
+    ]
+  },
 ]
 
 const route = createRouter({
-    history: createWebHashHistory(),
-    routes,
+  history: createWebHashHistory(),
+  routes,
 })
 
 export default route
