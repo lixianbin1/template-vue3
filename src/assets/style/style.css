@@ -34,7 +34,8 @@
   padding-top:50px;
 }
 .el-main{
-  min-height: calc(100vh - 110px);
+  min-height: calc(100vh - 50px);
+  min-width: 888px;
 }
 
 /*字体*/
