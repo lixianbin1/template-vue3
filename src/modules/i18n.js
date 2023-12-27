@@ -1,6 +1,6 @@
 import { createI18n } from 'vue-i18n'
 
-console.log(import.meta.glob('./../language/*.y(a)?ml',{ eager: true }))
+console.log("读取模块",import.meta.glob('./../language/*.y(a)?ml',{ eager: true }))
 
 const messages = Object.fromEntries(
   Object.entries(import.meta.glob('./../language/*.y(a)?ml'))
@@ -8,7 +8,7 @@ const messages = Object.fromEntries(
     
     //判断文件的后缀名称是什么，用来定位剪切
     const yaml = key.endsWith('.yaml')
-    console.log(key,value)
+    console.log("循环处理",key,value)
     return [key.slice(12, yaml ? -5 : -4), value.default]
   })
 )

@@ -9,15 +9,26 @@
     @open="handleOpen"
     @close="handleClose"
   >
+    <el-sub-menu index="0">
+      <template #title>
+        <el-icon><location /></el-icon>
+        <span>测试</span>
+      </template>
+      <el-menu-item index="/Demo">
+        <template #title>Demo</template>
+      </el-menu-item>
+    </el-sub-menu>
     <el-sub-menu index="1">
       <template #title>
         <el-icon><location /></el-icon>
-        <span>Element Plus</span>
+        <span>可视化图表</span>
       </template>
-      <el-sub-menu index="1-1">
-        <template #title>基础组件</template>
-        <el-menu-item index="/Buttom">按钮</el-menu-item>
-      </el-sub-menu>
+      <el-menu-item index="/">
+        <template #title>Echarts</template>
+      </el-menu-item>
+      <el-menu-item index="/GoJS">
+        <template #title>GoJS</template>
+      </el-menu-item>
     </el-sub-menu>
     <el-sub-menu index="2">
       <template #title>
@@ -26,7 +37,6 @@
       </template>
       <el-sub-menu index="2-1">
         <template #title>复习笔记</template>
-        <el-menu-item index="/">Notion</el-menu-item>
       </el-sub-menu>
     </el-sub-menu>
   </el-menu>
@@ -37,10 +47,10 @@ import { ref, watch } from 'vue';
 import { useRoute } from 'vue-router'
 // Menu事件
 const handleOpen = (key, keyPath) => {
-  console.log(key, keyPath)
+  console.log('展开',key, keyPath)
 }
 const handleClose = (key, keyPath) => {
-  console.log(key, keyPath)
+  console.log('关闭',key, keyPath)
 }
 // 菜单路由配置
 const route = useRoute()

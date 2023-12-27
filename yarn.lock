@@ -750,6 +750,11 @@ glob-parent@^5.1.2, glob-parent@~5.1.2:
   dependencies:
     is-glob "^4.0.1"
 
+gojs@^2.3.13:
+  version "2.3.13"
+  resolved "https://registry.npmmirror.com/gojs/-/gojs-2.3.13.tgz#ade012bcf3b9871ef5919efbc944ff6d4d83cb8c"
+  integrity sha512-hD1ewyt6EhFZ0phL8crvBML81sSzBEQCUQe3Dk2tB3Jt3xt5MJmx5TZXVeagmZFreLdKVQB59RXFtB9l5wT0Rw==
+
 is-binary-path@~2.1.0:
   version "2.1.0"
   resolved "https://registry.npmmirror.com/is-binary-path/-/is-binary-path-2.1.0.tgz#ea1f7f3b80f064236e83470f86c09c254fb45b09"

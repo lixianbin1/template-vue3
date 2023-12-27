@@ -13,9 +13,11 @@ import * as echarts from 'echarts';
 
 onMounted(()=>{
   setEchart('echartsOne',OptionOne)
-  OptionTwo('echartsTwo')
+  // OptionTwo('echartsTwo')
+  let ChartTwo = setEchart('echartsTwo',OptionTwo)
   setEchart('echartsThree',OptionThree)
   setEchart('echartsFour',OptionFour)
+  setTimeOutTwo(ChartTwo)
 })
 
 //Echarts数据1
@@ -38,71 +40,72 @@ const OptionOne = ref({
 })
 //设置Echarts自适应
 const setEchart=(ID,Option)=>{
-  var myChart = echarts.init(document.getElementById(ID));
-  myChart.setOption(Option.value);
-  window.onresize = () => {
-    myChart.resize()
-  }
-  return myChart
+  let time = new Date().getTime()
+  let value = 'myChart' + time
+  window[value] = echarts.init(document.getElementById(ID));
+  window[value].setOption(Option.value);
+  window.addEventListener('resize',()=>{
+    window[value].resize()
+  })
+  return window[value]
 }
 
 //Echarts数据2
-const OptionTwo=(ID)=>{
-  var ChartTwo = echarts.init(document.getElementById(ID));
-  const data = [];
+const OptionTwo = ref({
+  title: {
+    text: '竞争公司电器销量排名'
+  },
+  xAxis: {
+    max: 'dataMax'
+  },
+  yAxis: {
+    type: 'category',
+    data: ['格力', '美的', '小米', '美菱', 'TCL'],
+    inverse: true,
+    animationDuration: 300,
+    animationDurationUpdate: 300,
+    max: 4
+  },
+  series: [
+    {
+      realtimeSort: true,
+      name: '冰箱销量排名',
+      type: 'bar',
+      data: [],
+      label: {
+        position: 'right',
+        valueAnimation: true
+      },
+      itemStyle: {
+        color: function (param) {
+          switch(param.name){
+            case '格力':
+              return '#00008b';
+            case '美的':
+              return '#ffde00';
+            case '小米':
+              return '#003580';
+            case '美菱':
+              return '#003897';
+            case 'TCL':
+              return '#dc143c';
+            default:
+              return '#5470c6';
+          }
+        }
+      },
+    }
+  ],
+  animationDuration: 0,
+  animationDurationUpdate: 3000,
+  animationEasing: 'linear',
+  animationEasingUpdate: 'linear'
+})
+const setTimeOutTwo=(ChartTwo)=>{
+  const data = OptionTwo.value.series[0].data
   for (let i = 0; i < 5; ++i) {
     data.push(Math.round(Math.random() * 200));
   }
-  var option = {
-    title: {
-      text: '竞争公司电器销量排名'
-    },
-    xAxis: {
-      max: 'dataMax'
-    },
-    yAxis: {
-      type: 'category',
-      data: ['格力', '美的', '小米', '美菱', 'TCL'],
-      inverse: true,
-      animationDuration: 300,
-      animationDurationUpdate: 300,
-      max: 4
-    },
-    series: [
-      {
-        realtimeSort: true,
-        name: '冰箱销量排名',
-        type: 'bar',
-        data: data,
-        label: {
-          position: 'right',
-          valueAnimation: true
-        },
-        itemStyle: {
-          color: function (param) {
-            switch(param.name){
-              case '格力':
-                return '#00008b';
-              case '美的':
-                return '#ffde00';
-              case '小米':
-                return '#003580';
-              case '美菱':
-                return '#003897';
-              case 'TCL':
-                return '#dc143c';
-              default:
-                return '#5470c6';
-            }
-          }
-        },
-      }
-    ],
-    animationDuration: 0,
-    animationDurationUpdate: 3000,
-    animationEasing: 'linear',
-    animationEasingUpdate: 'linear'
-  };
   function run() {
     for (var i = 0; i < data.length; ++i) {
       if (Math.random() > 0.9) {
@@ -120,14 +123,10 @@ const OptionTwo=(ID)=>{
       ]
     });
   }
-  setTimeout(function () {
-    run();
-  }, 0);
   setInterval(function () {
     run();
   }, 3000);
-  console.log(option)
-  option && ChartTwo.setOption(option);
+  run();
 }
 
 //Echarts数据3
